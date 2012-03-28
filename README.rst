@@ -8,6 +8,7 @@ NOTE: This implementation is not yet complete! Adding new methods is easy though
 Installing
 ----------
 
+
 Using pip::
 
    pip install -e hg+https://bitbucket.org/amjoconn/uwaterlooapi#egg=uwaterlooapi
@@ -22,4 +23,6 @@ Using Weather as an example::
    >>> api.weather()
    Returns weather json
 
-Any positional or unrecongized keyword arguments will be ignored. If "output" or "callback" keyword arguments are provided the raw response is returned.
+The json returned by default is the content of the "data" key. If "output" or "callback" keyword arguments are provided the raw response is returned.
+
+Any positional or unrecongized keyword arguments will be ignored. 
