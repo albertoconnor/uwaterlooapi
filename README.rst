@@ -3,14 +3,14 @@ uwaterlooapi README
 
 Thin Python wrapper for the University of Waterloo Open Data API. The API is documented here: http://api.uwaterloo.ca/
 
-NOTE: This implementation is not yet complete! But adding new methods is easy.
+NOTE: This implementation is not yet complete! Adding new methods is easy though.
 
-Install
--------
+Installing
+----------
 
 Using pip::
 
-   pip install -e hg+https://bitbucket.org/amjoconn/uwaterlooapi
+   pip install -e hg+https://bitbucket.org/amjoconn/uwaterlooapi#egg=uwaterlooapi
 
 Usage
 -----
@@ -18,7 +18,7 @@ Usage
 Using Weather as an example::
 
    >>> from uwaterlooapi import UWaterlooAPI
-   >>> api = UWaterlooAPI(api_key="YOU API KEY HERE")
+   >>> api = UWaterlooAPI(api_key="YOUR API KEY HERE")
    >>> api.weather()
    Returns weather json
 
