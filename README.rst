@@ -10,16 +10,16 @@ Install
 
 Using pip::
 
-pip install -e hg+https://bitbucket.org/amjoconn/uwaterlooapi
+   pip install -e hg+https://bitbucket.org/amjoconn/uwaterlooapi
 
 Usage
 -----
   
 Using Weather as an example::
 
->>> from uwaterlooapi import UWaterlooAPI
->>> api = UWaterlooAPI(api_key="YOU API KEY HERE")
->>> api.weather()
-Returns weather json
+   >>> from uwaterlooapi import UWaterlooAPI
+   >>> api = UWaterlooAPI(api_key="YOU API KEY HERE")
+   >>> api.weather()
+   Returns weather json
 
 Any positional or unrecongized keyword arguments will be ignored. If "output" or "callback" keyword arguments are provided the raw response is returned.
