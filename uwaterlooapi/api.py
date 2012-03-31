@@ -16,6 +16,7 @@ class UWaterlooAPI(object):
     
 class APIFunction(object):
     method = None
+    arg_names = [] # name for positional arguments. If more arguments are provided then there are names they are ignored.
     
     def __init__(self, api, args, kwargs):
         self.api = api
@@ -36,6 +37,13 @@ class APIFunction(object):
         params["service"] = self.method
         if "output" not in params:
             params["output"] = "json"
+            
+        if len(self.arg_names) > len(self.args):
+            raise TypeError, "%s requires %s arguments (%s given)" % (self.__class__.__name__, len(self.arg_names), len(self.args))
+            
+        for name, arg in zip(self.arg_names, self.args):
+            params[name] = str(arg)
+            
         return urllib.urlencode(params)
     
     def execute(self):
@@ -44,6 +52,8 @@ class APIFunction(object):
         
         request = "%s?%s" % (self.api.url, self.encode())
         self.response = urllib.urlopen(request).read()
+        if self.response == "": # This happens when you search for something and there are no results, should probably be an empty list instead...
+            return None
         if self.explicit:
             return self.response
         else:
@@ -89,9 +99,80 @@ class calendar_events(APIFunction):
 class university_holidays(APIFunction):
     method = "Holidays"
 
-# I got tired...
+@bind
+class course_search(APIFunction):
+    """
+    course_search(q) where q is a string like "CS 241"
+    """
+    method = "CourseSearch"
+    arg_names = ["q"]
+
+@bind
+class course_info(APIFunction):
+    """
+    course_info(q) where q is a string like "CS 241"
+    """
+    method = "CourseInfo"
+    arg_names = ["q"]
+
+@bind
+class course_rerequisites(APIFunction):
+    """
+    course_rerequisite(q) where q is a string like "CS 241"
+    """
+    method = "Prerequisites"
+    arg_names = ["q"]
+
+@bind
+class faculties_list(APIFunction):
+    method = "FacultiesList"
+    
+@bind
+class departments_list(APIFunction):
+    method = "DepartmentsList"
+    
+@bind
+class terms_list(APIFunction):
+    method = "TermsList"
+
+@bind
+class exam_schedule(APIFunction):
+    method = "ExamSchedule"
+    
+@bind
+class food_services_info(APIFunction):
+    method = "FoodServices"
+    
+@bind
+class food_menu(APIFunction):
+    method = "FoodMenu"
+    
+@bind
+class vending_machines_list(APIFunction):
+    method = "VendingMachines"
+    
+@bind
+class watcard_vendors_list(APIFunction):
+    method = "WatcardVendors"
+
+@bind
+class professor_search(APIFunction):
+    """
+    professor_search(q) where q is a string like "conrad"
+    """
+    method = "ProfessorSearch"
+    arg_names = ["q"]
+   
+@bind
+class professor_details(APIFunction):
+    """
+    professor_details(q) where q a rate my professor id like "9845"
+    """
+    method = "ProfessorDetails"
+    arg_names = ["q"] 
 
 @bind
 class weather(APIFunction):
     method = "weather"
+
 
