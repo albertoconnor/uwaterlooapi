@@ -172,7 +172,43 @@ class professor_details(APIFunction):
     arg_names = ["q"] 
 
 @bind
+class programs_list(APIFunction):
+    method = "ProgramsList"
+
+@bind
+class recent_publications(APIFunction):
+    method = "RecentPublications"
+
+
+@bind
+class publication_details(APIFunction):
+    """
+    publication_details(q) where q a publication ID "6030"
+    """
+    method = "PublicationDetails"
+    arg_names = ["q"] 
+
+@bind
+class course_schedule(APIFunction):
+    """
+    course_schedule(q, term=current_term) where q a publication ID "6030" and term is a term id like "1119".
+    Term needs to be specified as a keyword argument
+    """
+    method = "Schedule"
+    arg_names = ["q"] 
+
+@bind
 class weather(APIFunction):
     method = "weather"
 
+@bind
+class staff_info(APIFunction):
+    """
+    staff_info(q) where q a WATIAM username like "lwsmith"
+    """
+    method = "StaffInfo"
+    arg_names = ["q"] 
 
+@bind
+class OMGUW(APIFunction):
+    method = "OMGUW"
