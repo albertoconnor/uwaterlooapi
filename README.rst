@@ -3,8 +3,6 @@ uwaterlooapi README
 
 Thin Python wrapper for the University of Waterloo Open Data API. The API is documented here: http://api.uwaterloo.ca/
 
-NOTE: This implementation is not yet complete! Adding new methods is easy though.
-
 Installing
 ----------
 
