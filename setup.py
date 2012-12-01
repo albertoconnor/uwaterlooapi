@@ -27,10 +27,10 @@ setup(
     install_requires=requires,
     license='MIT',
     zip_safe=False,
-    classifiers=[
+    classifiers=(
         "Development Status :: 3 - Alpha",
+        'Intended Audience :: Developers',
         "Operating System :: OS Independent",
-        "Topic :: Software Development"
-    ],
+    ),
 
 )
