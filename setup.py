@@ -7,8 +7,8 @@ except ImportError:
 import uwaterlooapi
 
 packages = [
-    'uwaterlooapi'
-],
+    'uwaterlooapi',
+]
 
 requires = []
 
