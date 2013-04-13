@@ -1,4 +1,4 @@
-__version__ = '0.2.0'
+__version__ = '0.2.1'
 
 from shad import BaseAPI, APIFunction, get_bind
 
@@ -64,7 +64,7 @@ class watpark(UWaterlooAPIFunction):
 @bind
 class daily_events(UWaterlooAPIFunction):
     path  = '/'
-    service ="Events"
+    service = "Events"
 
 @bind
 class calendar_events(UWaterlooAPIFunction):
@@ -74,7 +74,7 @@ class calendar_events(UWaterlooAPIFunction):
 @bind
 class university_holidays(UWaterlooAPIFunction):
     path  = '/'
-    service ="Holidays"
+    service = "Holidays"
 
 @bind
 class course_search(UWaterlooAPIFunction):
@@ -82,7 +82,7 @@ class course_search(UWaterlooAPIFunction):
     course_search(q) where q is a string like "CS 241"
     """
     path  = '/'
-    service ="CourseSearch"
+    service = "CourseSearch"
     arg_names = ["q"]
 
 @bind
@@ -91,7 +91,7 @@ class course_info(UWaterlooAPIFunction):
     course_info(q) where q is a string like "CS 241"
     """
     path  = '/'
-    service ="CourseInfo"
+    service = "CourseInfo"
     arg_names = ["q"]
 
 @bind
@@ -100,48 +100,48 @@ class course_prerequisites(UWaterlooAPIFunction):
     course_rerequisite(q) where q is a string like "CS 241"
     """
     path  = '/'
-    service ="Prerequisites"
+    service = "Prerequisites"
     arg_names = ["q"]
 
 @bind
 class faculties_list(UWaterlooAPIFunction):
     path  = '/'
-    service ="FacultiesList"
+    service = "FacultiesList"
     
 @bind
 class departments_list(UWaterlooAPIFunction):
     path  = '/'
-    service ="DepartmentsList"
+    service = "DepartmentsList"
     
 @bind
 class terms_list(UWaterlooAPIFunction):
     path  = '/'
-    service ="TermsList"
+    service = "TermsList"
 
 @bind
 class exam_schedule(UWaterlooAPIFunction):
     path  = '/'
-    service ="ExamSchedule"
+    service = "ExamSchedule"
     
 @bind
 class food_services_info(UWaterlooAPIFunction):
     path  = '/'
-    service ="FoodServices"
+    service = "FoodServices"
     
 @bind
 class food_menu(UWaterlooAPIFunction):
     path  = '/'
-    service ="FoodMenu"
+    service = "FoodMenu"
     
 @bind
 class vending_machines_list(UWaterlooAPIFunction):
     path  = '/'
-    service ="VendingMachines"
+    service = "VendingMachines"
     
 @bind
 class watcard_vendors_list(UWaterlooAPIFunction):
     path  = '/'
-    service ="WatcardVendors"
+    service = "WatcardVendors"
 
 @bind
 class professor_search(UWaterlooAPIFunction):
@@ -149,7 +149,7 @@ class professor_search(UWaterlooAPIFunction):
     professor_search(q) where q is a string like "conrad"
     """
     path  = '/'
-    service ="ProfessorSearch"
+    service = "ProfessorSearch"
     arg_names = ["q"]
    
 @bind
@@ -158,18 +158,18 @@ class professor_details(UWaterlooAPIFunction):
     professor_details(q) where q a rate my professor id like "9845"
     """
     path  = '/'
-    service ="ProfessorDetails"
+    service = "ProfessorDetails"
     arg_names = ["q"] 
 
 @bind
 class programs_list(UWaterlooAPIFunction):
     path  = '/'
-    service ="ProgramsList"
+    service = "ProgramsList"
 
 @bind
 class recent_publications(UWaterlooAPIFunction):
     path  = '/'
-    service ="RecentPublications"
+    service = "RecentPublications"
 
 @bind
 class publication_details(UWaterlooAPIFunction):
@@ -177,13 +177,13 @@ class publication_details(UWaterlooAPIFunction):
     publication_details(q) where q a publication ID "6030"
     """
     path  = '/'
-    service ="PublicationDetails"
+    service = "PublicationDetails"
     arg_names = ["q"] 
 
 @bind
 class recent_dissertations(UWaterlooAPIFunction):
     path  = '/'
-    service ="RecentDissertations"
+    service = "RecentDissertations"
 
 @bind
 class dissertations_details(UWaterlooAPIFunction):
@@ -191,7 +191,7 @@ class dissertations_details(UWaterlooAPIFunction):
     publication_details(q) where q a dissertations ID "6030"
     """
     path  = '/'
-    service ="DissertationDetails"
+    service = "DissertationDetails"
     arg_names = ["q"] 
 
 @bind
@@ -201,7 +201,7 @@ class course_schedule(UWaterlooAPIFunction):
     Term needs to be specified as a keyword argument
     """
     path  = '/'
-    service ="Schedule"
+    service = "Schedule"
     arg_names = ["q"] 
 
 @bind
@@ -215,10 +215,15 @@ class staff_info(UWaterlooAPIFunction):
     staff_info(q) where q a WATIAM username like "lwsmith"
     """
     path  = '/'
-    service ="StaffInfo"
+    service = "StaffInfo"
     arg_names = ["q"] 
 
 @bind
 class OMGUW(UWaterlooAPIFunction):
     path  = '/'
     service ="OMGUW"
+
+@bind
+class goose_watch(UWaterlooAPIFunction):
+    path = '/'
+    service = "GooseWatch"
