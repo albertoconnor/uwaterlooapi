@@ -24,7 +24,7 @@ setup(
     include_package_data=True,
     install_requires=requires,
     dependency_links = [
-        'https://bitbucket.org/amjoconn/shad/get/default.tar.gz#egg=shad',
+        'https://bitbucket.org/amjoconn/shad/get/default.tar.gz#egg=shad-dev',
     ],
     license='MIT',
     zip_safe=False,
