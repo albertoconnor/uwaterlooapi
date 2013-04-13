@@ -4,17 +4,15 @@ try:
 except ImportError:
     from distutils.core import setup
 
-import uwaterlooapi
-
 packages = [
     'uwaterlooapi',
 ]
 
-requires = []
+requires = ['shad']
 
 setup(
     name='uwaterlooapi',
-    version=uwaterlooapi.__version__,
+    version='0.2.1',
     description='Thin library wrapper for the University of Waterloo Open Data API.',
     long_description='See http://api.uwaterloo.ca/ for a descripton of the API.',
     author='Albert O\'Connor',
@@ -25,6 +23,9 @@ setup(
     package_dir={},
     include_package_data=True,
     install_requires=requires,
+    dependency_links = [
+        'https://bitbucket.org/amjoconn/shad/get/default.tar.gz#egg=shad',
+    ],
     license='MIT',
     zip_safe=False,
     classifiers=(
