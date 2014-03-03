@@ -9,13 +9,11 @@ Installing
 
 Using pip::
 
-   pip install requests
-   pip install -e hg+ssh://hg@bitbucket.org/amjoconn/shad#egg=shad
    pip install -e hg+https://bitbucket.org/amjoconn/uwaterlooapi#egg=uwaterlooapi
 
 Usage
 -----
-  
+
 Basic usage::
 
     >>> from uwaterlooapi import UWaterlooAPI

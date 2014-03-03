@@ -8,7 +8,7 @@ packages = [
     'uwaterlooapi',
 ]
 
-requires = ['shad>=0.1.2']
+requires = ['shad>=0.1.3']
 
 setup(
     name='uwaterlooapi',
