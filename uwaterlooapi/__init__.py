@@ -1,20 +1,20 @@
-__version__ = '0.2.1'
+__version__ = '0.3.0'
 
 from shad import BaseAPI, APIFunction, get_bind
 
 
 class UWaterlooAPI(BaseAPI):
-    def __init__(self, api_key=None, base_url='http://api.uwaterloo.ca/public/v1/'):
+    def __init__(self, api_key=None, base_url='http://api.uwaterloo.ca/v2/'):
         self.api_key = api_key
         self.base_url = base_url
-    
+
     def _update_parameters(self, params):
         params["key"] = self.api_key
         if 'output' not in params:
             params['output'] = 'json'
-        
+
         return params
-    
+
     def _process_json(self, data):
         if 'response' in data:
             ret_data = data['response']['data']
@@ -27,203 +27,139 @@ class UWaterlooAPI(BaseAPI):
 
 
 class UWaterlooAPIFunction(APIFunction):
-    service = None
-    
-    def _get_parameters(self):
-        self.kwargs["service"] = self.service
-        return super(UWaterlooAPIFunction, self)._get_parameters()
-    
-    
+    def get_path(self, kwargs):
+        if 'output' in kwargs['params']:
+            return self.path + u'.' + kwargs['params']['output']
+        return self.path
+
 bind = get_bind(UWaterlooAPI)
 
 
-# Geolocation
+# FoodServices
 
 @bind
-class buildings(UWaterlooAPIFunction):
-    path  = '/'
-    service = "Buildings"
+class menu(UWaterlooAPIFunction):
+    path  = '/foodservices/menu'
 
 @bind
-class building_coordinates(UWaterlooAPIFunction):
-    path = '/'
-    service = "BuildingCoordinates"
+class notes(UWaterlooAPIFunction):
+    path  = '/foodservices/notes'
 
 @bind
-class parking(UWaterlooAPIFunction):
-    path  = '/'
-    service = "ParkingList"
+class diets(UWaterlooAPIFunction):
+    path  = '/foodservices/diets'
+
 
 @bind
-class watpark(UWaterlooAPIFunction):
-    path  = '/'
-    service = "WatPark"
+class outlets(UWaterlooAPIFunction):
+    path  = '/foodservices/outlets'
+
+@bind
+class locations(UWaterlooAPIFunction):
+    path  = '/foodservices/locations'
+
+@bind
+class watcard(UWaterlooAPIFunction):
+    path  = '/foodservices/watcard'
+
+@bind
+class announcements(UWaterlooAPIFunction):
+    path  = '/foodservices/announcements'
+
+# Course
+
+# Works needs to be done here...
 
 # Events
 
 @bind
-class daily_events(UWaterlooAPIFunction):
-    path  = '/'
-    service = "Events"
+class holidays(UWaterlooAPIFunction):
+    path  = '/events/holidays'
+
+# Weather
 
 @bind
-class calendar_events(UWaterlooAPIFunction):
-    path  = '/'
-    service = "CalendarEvents"
+class current_weather(UWaterlooAPIFunction):
+    path  = '/weather/current'
+
+# Terms
 
 @bind
-class university_holidays(UWaterlooAPIFunction):
-    path  = '/'
-    service = "Holidays"
+class terms(UWaterlooAPIFunction):
+    path = '/terms/list'
+
+# Resources
 
 @bind
-class course_search(UWaterlooAPIFunction):
-    """
-    course_search(q) where q is a string like "CS 241"
-    """
-    path  = '/'
-    service = "CourseSearch"
-    arg_names = ["q"]
+class tutors(UWaterlooAPIFunction):
+    path = '/resources/tutors'
 
 @bind
-class course_info(UWaterlooAPIFunction):
-    """
-    course_info(q) where q is a string like "CS 241"
-    """
-    path  = '/'
-    service = "CourseInfo"
-    arg_names = ["q"]
+class printers(UWaterlooAPIFunction):
+    path = '/resources/printers'
 
 @bind
-class course_prerequisites(UWaterlooAPIFunction):
-    """
-    course_rerequisite(q) where q is a string like "CS 241"
-    """
-    path  = '/'
-    service = "Prerequisites"
-    arg_names = ["q"]
+class infosessions(UWaterlooAPIFunction):
+    path = '/resources/infosessions'
+
+# Definitions and Codes
 
 @bind
-class faculties_list(UWaterlooAPIFunction):
-    path  = '/'
-    service = "FacultiesList"
-    
-@bind
-class departments_list(UWaterlooAPIFunction):
-    path  = '/'
-    service = "DepartmentsList"
-    
-@bind
-class terms_list(UWaterlooAPIFunction):
-    path  = '/'
-    service = "TermsList"
+class unit_codes(UWaterlooAPIFunction):
+    path = '/codes/units'
 
 @bind
-class exam_schedule(UWaterlooAPIFunction):
-    path  = '/'
-    service = "ExamSchedule"
-    
-@bind
-class food_services_info(UWaterlooAPIFunction):
-    path  = '/'
-    service = "FoodServices"
-    
-@bind
-class food_menu(UWaterlooAPIFunction):
-    path  = '/'
-    service = "FoodMenu"
-    
-@bind
-class vending_machines_list(UWaterlooAPIFunction):
-    path  = '/'
-    service = "VendingMachines"
-    
-@bind
-class watcard_vendors_list(UWaterlooAPIFunction):
-    path  = '/'
-    service = "WatcardVendors"
+class term_codes(UWaterlooAPIFunction):
+    path = '/codes/terms'
 
 @bind
-class professor_search(UWaterlooAPIFunction):
-    """
-    professor_search(q) where q is a string like "conrad"
-    """
-    path  = '/'
-    service = "ProfessorSearch"
-    arg_names = ["q"]
-   
-@bind
-class professor_details(UWaterlooAPIFunction):
-    """
-    professor_details(q) where q a rate my professor id like "9845"
-    """
-    path  = '/'
-    service = "ProfessorDetails"
-    arg_names = ["q"] 
+class group_codes(UWaterlooAPIFunction):
+    path = '/codes/groups'
 
 @bind
-class programs_list(UWaterlooAPIFunction):
-    path  = '/'
-    service = "ProgramsList"
+class subject_codes(UWaterlooAPIFunction):
+    path = '/codes/subjects'
 
 @bind
-class recent_publications(UWaterlooAPIFunction):
-    path  = '/'
-    service = "RecentPublications"
+class instruction_codes(UWaterlooAPIFunction):
+    path = '/codes/instructions'
+
+# Buildings
 
 @bind
-class publication_details(UWaterlooAPIFunction):
-    """
-    publication_details(q) where q a publication ID "6030"
-    """
-    path  = '/'
-    service = "PublicationDetails"
-    arg_names = ["q"] 
+class building_list(UWaterlooAPIFunction):
+    path = '/buildings/list'
+
+# API
 
 @bind
-class recent_dissertations(UWaterlooAPIFunction):
-    path  = '/'
-    service = "RecentDissertations"
+class api_usage(UWaterlooAPIFunction):
+    path = '/api/usage'
 
 @bind
-class dissertations_details(UWaterlooAPIFunction):
-    """
-    publication_details(q) where q a dissertations ID "6030"
-    """
-    path  = '/'
-    service = "DissertationDetails"
-    arg_names = ["q"] 
+class api_services(UWaterlooAPIFunction):
+    path = '/api/services'
 
 @bind
-class course_schedule(UWaterlooAPIFunction):
-    """
-    course_schedule(q, term=current_term) where q a publication ID "6030" and term is a term id like "1119".
-    Term needs to be specified as a keyword argument
-    """
-    path  = '/'
-    service = "Schedule"
-    arg_names = ["q"] 
+class api_methods(UWaterlooAPIFunction):
+    path = '/api/methods'
 
 @bind
-class weather(UWaterlooAPIFunction):
-    path  = '/'
-    service ="weather"
+class api_versions(UWaterlooAPIFunction):
+    path = '/api/versions'
 
 @bind
-class staff_info(UWaterlooAPIFunction):
-    """
-    staff_info(q) where q a WATIAM username like "lwsmith"
-    """
-    path  = '/'
-    service = "StaffInfo"
-    arg_names = ["q"] 
+class api_changelog(UWaterlooAPIFunction):
+    path = '/api/changelog'
+
+# Server
 
 @bind
-class OMGUW(UWaterlooAPIFunction):
-    path  = '/'
-    service ="OMGUW"
+class server_time(UWaterlooAPIFunction):
+    path = '/server/time'
 
 @bind
-class goose_watch(UWaterlooAPIFunction):
-    path = '/'
-    service = "GooseWatch"
+class server_codes(UWaterlooAPIFunction):
+    path = '/server/codes'
+
+

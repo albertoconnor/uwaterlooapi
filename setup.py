@@ -8,11 +8,11 @@ packages = [
     'uwaterlooapi',
 ]
 
-requires = ['shad']
+requires = ['shad>=0.1.1']
 
 setup(
     name='uwaterlooapi',
-    version='0.2.1',
+    version='0.3.0',
     description='Thin library wrapper for the University of Waterloo Open Data API.',
     long_description='See http://api.uwaterloo.ca/ for a descripton of the API.',
     author='Albert O\'Connor',
@@ -23,9 +23,6 @@ setup(
     package_dir={},
     include_package_data=True,
     install_requires=requires,
-    dependency_links = [
-        'https://bitbucket.org/amjoconn/shad/get/default.tar.gz#egg=shad-dev',
-    ],
     license='MIT',
     zip_safe=False,
     classifiers=(

@@ -1,6 +1,6 @@
 # Just barely tests things to make sure they work
 
-from uwaterlooapi import UWaterlooAPI; api = UWaterlooAPI(api_key='YOURKEYHERE')
+from uwaterlooapi import UWaterlooAPI; api = UWaterlooAPI(api_key='fda8e642f9c9480800e8c02896744288')
 
 exclude = ['api_key', 'base_url']
 
