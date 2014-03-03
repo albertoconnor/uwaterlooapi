@@ -1,3 +1,5 @@
+import os
+
 # Use setuptools if we can
 try:
     from setuptools.core import setup
@@ -8,7 +10,7 @@ packages = [
     'uwaterlooapi',
 ]
 
-requires = ['shad>=0.1.3']
+requires = ['shad>=0.1.4']
 
 setup(
     name='uwaterlooapi',
