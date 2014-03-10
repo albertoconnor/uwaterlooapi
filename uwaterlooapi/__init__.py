@@ -29,11 +29,16 @@ class UWaterlooAPI(BaseAPI):
 class UWaterlooAPIFunction(APIFunction):
     def get_path(self, kwargs):
         if 'output' in kwargs['params']:
-            return self.path + u'.' + kwargs['params']['output']
-        return self.path
+            path = self.path + u'.' + kwargs['params']['output']
+        else:
+            path = self.path
+        try:
+            return path.format(*self.args)
+        except IndexError:
+            raise TypeError('Wrong number of arguments for url {}, {}'.format(path, self.args))
+
 
 bind = get_bind(UWaterlooAPI)
-
 
 # FoodServices
 
@@ -48,7 +53,6 @@ class notes(UWaterlooAPIFunction):
 @bind
 class diets(UWaterlooAPIFunction):
     path  = '/foodservices/diets'
-
 
 @bind
 class outlets(UWaterlooAPIFunction):
@@ -66,8 +70,47 @@ class watcard(UWaterlooAPIFunction):
 class announcements(UWaterlooAPIFunction):
     path  = '/foodservices/announcements'
 
-# Course
+@bind
+class products(UWaterlooAPIFunction):
+    path  = '/foodservices/products/{}'
 
+@bind
+class menu_by_week(UWaterlooAPIFunction):
+    path = '/foodservices/{}/{}/menu'
+
+@bind
+class notes_by_week(UWaterlooAPIFunction):
+    path = '/foodservices/{}/{}/notes'
+
+@bind
+class announcements_by_week(UWaterlooAPIFunction):
+    path = '/foodservices/{}/{}/announcements'
+
+# Courses
+
+@bind
+class courses(UWaterlooAPIFunction):
+    path = '/courses/{}'
+
+@bind
+class schedule_by_class_number(UWaterlooAPIFunction):
+    path = '/courses/{}/schedule'
+
+@bind
+class course(UWaterlooAPIFunction):
+    path = '/courses/{}/{}'
+
+@bind
+class course_schedule(UWaterlooAPIFunction):
+    path = '/courses/{}/{}/schedule'
+
+@bind
+class course_prerequistes(UWaterlooAPIFunction):
+    path = '/courses/{}/{}/prerequisites'
+
+@bind
+class course_examschedule(UWaterlooAPIFunction):
+    path = '/courses/{}/{}/examschedule'
 # Works needs to be done here...
 
 # Events
@@ -87,6 +130,18 @@ class current_weather(UWaterlooAPIFunction):
 @bind
 class terms(UWaterlooAPIFunction):
     path = '/terms/list'
+
+@bind
+class term_examschedule(UWaterlooAPIFunction):
+    path = '/terms/{}/examschedule'
+
+@bind
+class term_subject_schedule(UWaterlooAPIFunction):
+    path = '/terms/{}/{}/schedule'
+
+@bind
+class term_course_schedule(UWaterlooAPIFunction):
+    path = '/terms/{}/{}/{}/schedule'
 
 # Resources
 
@@ -129,6 +184,14 @@ class instruction_codes(UWaterlooAPIFunction):
 @bind
 class building_list(UWaterlooAPIFunction):
     path = '/buildings/list'
+
+@bind
+class building(UWaterlooAPIFunction):
+    path = '/buildings/{}'
+
+@bind
+class course_by_building_room(UWaterlooAPIFunction):
+    path = '/buildings/{}/{}/courses'
 
 # API
 
