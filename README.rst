@@ -8,7 +8,7 @@ Installing
 
 Using pip::
 
-   pip install -e hg+https://bitbucket.org/amjoconn/uwaterlooapi#egg=uwaterlooapi
+   pip install uwaterlooapi
 
 Usage
 -----
@@ -26,5 +26,3 @@ Generally I used the documenation names for methods as the Python method names, 
 
     >>> dir(uw)
     [..., 'announcements', 'api_changelog', 'api_key', 'api_methods', 'api_services', 'api_usage', 'api_versions', 'base_url', 'building_list', 'current_weather', 'diets', 'group_codes', 'holidays', 'infosessions', 'instruction_codes', 'locations', 'menu', 'notes', 'outlets', 'printers', 'server_codes', 'server_time', 'subject_codes', 'term_codes', 'terms', 'tutors', 'unit_codes', 'watcard']
-
-I need to implement the argument based calls.
