@@ -90,7 +90,7 @@ class announcements_by_week(UWaterlooAPIFunction):
 
 @bind
 class courses(UWaterlooAPIFunction):
-    path = '/courses/{}'
+    path = '/courses'
 
 @bind
 class schedule_by_class_number(UWaterlooAPIFunction):
@@ -142,6 +142,10 @@ class term_subject_schedule(UWaterlooAPIFunction):
 @bind
 class term_course_schedule(UWaterlooAPIFunction):
     path = '/terms/{}/{}/{}/schedule'
+
+@bind
+class term_courses(UWaterlooAPIFunction):
+    path = '/terms/{}/courses'
 
 # Resources
 
@@ -224,5 +228,4 @@ class server_time(UWaterlooAPIFunction):
 @bind
 class server_codes(UWaterlooAPIFunction):
     path = '/server/codes'
-
 
