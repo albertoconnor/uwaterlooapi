@@ -14,7 +14,7 @@ requires = ['shad>=0.1.4']
 
 setup(
     name='uwaterlooapi',
-    version='0.3.0',
+    version='0.3.1',
     description='Thin library wrapper for the University of Waterloo Open Data API.',
     long_description='See http://api.uwaterloo.ca/ for a descripton of the API.',
     author='Albert O\'Connor',
